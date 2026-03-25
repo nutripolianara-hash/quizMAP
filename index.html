@@ -6,10 +6,7 @@
 <title>Método Além do Peso – Descubra seu Perfil</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --verde:#1A6B3A;--verde-light:#2D8653;--verde-pale:#E8F5ED;--verde-dark:#134F2B;--verde-borda:#A8D5BB;
-  --cream:#f9fbf9;--cream-dark:#edf5f0;--text:#1a1a1a;--muted:#5a6b5e;--light:#8aab95;--white:#ffffff;--radius:18px;--rsm:12px;
-}
+:root{--verde:#1A6B3A;--verde-light:#2D8653;--verde-pale:#E8F5ED;--verde-dark:#134F2B;--verde-borda:#A8D5BB;--cream:#f9fbf9;--cream-dark:#edf5f0;--text:#1a1a1a;--muted:#5a6b5e;--light:#8aab95;--white:#ffffff;--radius:18px;--rsm:12px}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 40% at 15% 0%,rgba(26,107,58,.10) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 85% 100%,rgba(45,134,83,.08) 0%,transparent 60%)}
@@ -65,8 +62,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .session-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:5px}
 .session-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px}
 .session-pillars{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}.sp-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--muted)}.spi{font-size:15px;width:20px;flex-shrink:0;margin-top:1px}.sp-item strong{color:var(--text);font-weight:500}
-.btn-qualified{width:100%;padding:17px;background:linear-gradient(135deg,var(--verde-dark),var(--verde-light));color:#fff;border:none;border-radius:var(--rsm);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
-.btn-qualified:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 8px 22px rgba(26,107,58,.3)}
 .next-steps{background:#f0faf5;border:1px solid rgba(26,107,58,.2);border-radius:var(--rsm);padding:16px;margin-top:14px}
 .ns-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--verde);font-weight:600;margin-bottom:10px}
 .ns-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:13px;color:var(--muted);line-height:1.5}.ns-item:last-child{margin-bottom:0}
@@ -336,10 +331,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
       </div>
     </div>
   </div>
-
 </div>
+
 <script>
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzt5WDJd5vSGe1OkIeMzpPZphIFqndAMiPwEC-YqsEjCRnEAC0ktk13B9IKrQ01iYdFaw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxY5OmmF8vNbSwbKjJSeRmdjXc_C558upByBKKu_NkL5cQZfzAph560ms8LLa8dIm7Jow/exec';
 const answers = {};
 
 function goTo(id) {
@@ -388,8 +383,18 @@ function submitLead(){
   const q5=answers.q5||'a';
   const q6=answers.q6||'a';
   const isQualified=(q5!=='a')&&(q6==='b'||q6==='c');
-  const params=new URLSearchParams({nome,whatsapp:wpp,email,qualificada:isQualified?'SIM':'NÃO',q1:answers.q1||'',q2:answers.q2||'',q3:answers.q3||'',q4:answers.q4||'',q5:answers.q5||'',q6:answers.q6||''});
-  if(APPS_SCRIPT_URL){fetch(APPS_SCRIPT_URL+'?'+params.toString(),{method:'GET'}).catch(()=>{});}
+  var fd=new FormData();
+  fd.append('nome',nome);
+  fd.append('whatsapp',wpp);
+  fd.append('email',email);
+  fd.append('qualificada',isQualified?'SIM':'NÃO');
+  fd.append('q1',answers.q1||'');
+  fd.append('q2',answers.q2||'');
+  fd.append('q3',answers.q3||'');
+  fd.append('q4',answers.q4||'');
+  fd.append('q5',answers.q5||'');
+  fd.append('q6',answers.q6||'');
+  fetch(APPS_SCRIPT_URL,{method:'POST',body:fd}).catch(()=>{});
   setTimeout(()=>showResult(nome,isQualified),1600);
 }
 
@@ -408,18 +413,17 @@ function showResult(nome,isQualified){
   const q1=answers.q1||'b';
   const q3=answers.q3||'b';
   const q5=answers.q5||'b';
-  const q6=answers.q6||'b';
   if(isQualified){
     let title,desc,insights;
     if(q1==='b'||q1==='d'){
       title=first+', você conhece bem esse <em>ciclo: chegou a hora de sair dele</em>';
       desc='Você já emagreceu antes e sabe que é capaz. O problema nunca foi emagrecer, foi manter. Isso não é falta de disciplina sua: é falta de estrutura. E estrutura é exatamente o que o Método Além do Peso entrega.';
       insights=[{t:'Você tem histórico de resultado',d:'Já provou que consegue. O que falta é um sistema que sustente esse resultado além do acompanhamento.'},{t:'O ciclo tem causa identificável',d:'Esse padrão de retorno ao peso tem gatilhos específicos, e a gente vai mapear exatamente quais são os seus.'},{t:'Você está no momento certo',d:'Cansaço do ciclo é o sinal mais claro de que você está pronta para uma mudança real, não mais uma dieta.'}];
-    } else if(q3==='b'){
+    }else if(q3==='b'){
       title=first+', a <em>rotina não é o inimigo:</em> ela só precisa de estrutura';
       desc='Você não falha porque é fraca. Você falha porque ninguém nunca te ensinou a encaixar a alimentação NA SUA rotina real, não em uma rotina imaginária e perfeita. Isso é o que resolvemos juntas.';
       insights=[{t:'Rotina e alimentação precisam conversar',d:'Um plano que não funciona quando a semana aperta não é um plano: é uma teoria.'},{t:'Falta de tempo é sintoma, não causa',d:'A causa real é não ter uma estrutura simples que funciona automaticamente nos dias difíceis.'},{t:'Você não precisa de mais força de vontade',d:'Precisa de um sistema que exija menos decisões diárias sobre o que comer.'}];
-    } else {
+    }else{
       title=first+', você está <em>pronta para resolver isso de vez</em>';
       desc='Suas respostas mostram alguém que conhece o problema, já tentou várias saídas e está disposta a fazer diferente. Isso é exatamente o perfil de quem tem resultado real com o Método Além do Peso.';
       insights=[{t:'Autoconhecimento é seu maior ativo',d:'Você sabe o que acontece com você. Agora precisa de alguém que ajude a transformar esse conhecimento em sistema.'},{t:'Motivação não é o problema',d:'Você não falta motivação. Falta uma estrutura que funcione além da motivação.'},{t:'Momento certo para agir',d:'Quem chega até aqui e responde com honestidade está pronta para o próximo passo.'}];
@@ -428,12 +432,12 @@ function showResult(nome,isQualified){
     document.getElementById('q-desc').textContent=desc;
     buildInsights(document.getElementById('q-insights'),insights);
     goTo('squalified');
-  } else {
+  }else{
     let wdesc,witems;
     if(q5==='a'){
       wdesc=first+', entendemos que este não é o melhor momento financeiro para você. Registramos seu interesse e vamos entrar em contato assim que tivermos uma condição que faça sentido para o seu momento.';
       witems=[{icon:'💛',t:'<strong>Momento financeiro:</strong> O Método Além do Peso é um investimento e queremos que você entre quando puder aproveitar 100%.'},{icon:'📅',t:'<strong>Sem pressa:</strong> Quando sua situação melhorar, estaremos aqui. Seu cadastro já está na nossa lista.'},{icon:'✨',t:'<strong>Enquanto isso:</strong> O conteúdo gratuito do @nutrialemdopeso já vai te preparar para quando chegar a hora certa.'}];
-    } else {
+    }else{
       wdesc=first+', suas respostas mostram que você ainda está explorando o que quer. Isso é completamente válido, e quando estiver mais clara sobre o que busca, a sessão diagnóstica vai fazer muito mais sentido.';
       witems=[{icon:'🤔',t:'<strong>Clareza antes de ação:</strong> A sessão diagnóstica funciona melhor quando você já sabe que quer parar de recomeçar, não apenas emagrecer rapidamente.'},{icon:'📱',t:'<strong>Continue acompanhando:</strong> O conteúdo do @nutrialemdopeso vai te ajudar a entender se o MAP é o que você realmente procura.'},{icon:'🔄',t:'<strong>Você pode refazer o quiz:</strong> Quando tiver mais clareza, refaça o quiz. Suas respostas podem ser diferentes.'}];
     }
