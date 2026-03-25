@@ -5,247 +5,100 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Método Além do Peso – Descubra seu Perfil</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
-
 <style>
 :root{
-  --verde:       #1A6B3A;
-  --verde-light: #2D8653;
-  --verde-pale:  #E8F5ED;
-  --verde-dark:  #134F2B;
-  --verde-borda: #A8D5BB;
-  --cream:       #f9fbf9;
-  --cream-dark:  #edf5f0;
-  --text:        #1a1a1a;
-  --muted:       #5a6b5e;
-  --light:       #8aab95;
-  --white:       #ffffff;
-  --radius:      18px;
-  --rsm:         12px;
+  --verde:#1A6B3A;--verde-light:#2D8653;--verde-pale:#E8F5ED;--verde-dark:#134F2B;--verde-borda:#A8D5BB;
+  --cream:#f9fbf9;--cream-dark:#edf5f0;--text:#1a1a1a;--muted:#5a6b5e;--light:#8aab95;--white:#ffffff;--radius:18px;--rsm:12px;
 }
-
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 70% 40% at 15% 0%,  rgba(26,107,58,.10) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 40% at 85% 100%, rgba(45,134,83,.08) 0%,transparent 60%)}
-
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 40% at 15% 0%,rgba(26,107,58,.10) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 85% 100%,rgba(45,134,83,.08) 0%,transparent 60%)}
 .app{position:relative;z-index:1;max-width:600px;margin:0 auto;padding:0 16px 80px}
-
-/* TOP BAR */
 .topbar{display:flex;align-items:center;justify-content:center;padding:22px 0 18px}
-.logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--verde-dark)}
-.logo em{font-style:italic;color:var(--verde)}
-
-/* PROGRESS */
-.prog-wrap{margin-bottom:24px}
-.prog-meta{display:flex;justify-content:space-between;margin-bottom:7px}
-.prog-meta span{font-size:12px;color:var(--light);font-weight:500}
-.prog-n{color:var(--verde)!important;font-weight:600!important}
+.logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--verde-dark)}.logo em{font-style:italic;color:var(--verde)}
+.prog-wrap{margin-bottom:24px}.prog-meta{display:flex;justify-content:space-between;margin-bottom:7px}
+.prog-meta span{font-size:12px;color:var(--light);font-weight:500}.prog-n{color:var(--verde)!important;font-weight:600!important}
 .prog-bar{height:4px;background:var(--cream-dark);border-radius:99px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--verde-dark),var(--verde-light));
-  border-radius:99px;transition:width .55s cubic-bezier(.4,0,.2,1)}
-
-/* SCREEN */
-.screen{display:none;animation:fadeUp .4s ease}
-.screen.active{display:block}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--verde-dark),var(--verde-light));border-radius:99px;transition:width .55s cubic-bezier(.4,0,.2,1)}
+.screen{display:none;animation:fadeUp .4s ease}.screen.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-
-/* CARD */
-.card{background:var(--white);border-radius:24px;border:1px solid rgba(26,107,58,.13);
-  box-shadow:0 6px 40px rgba(20,80,40,.07),0 1px 4px rgba(20,80,40,.04);overflow:hidden}
-.card-top{padding:28px 28px 22px;
-  background:linear-gradient(135deg,var(--verde-pale) 0%,#f4fbf6 100%);
-  border-bottom:1px solid rgba(26,107,58,.1)}
-.tag{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;
-  letter-spacing:.1em;color:var(--verde);background:rgba(26,107,58,.12);
-  padding:4px 11px;border-radius:99px;margin-bottom:11px}
-.card-q{font-family:'Playfair Display',serif;font-size:20px;line-height:1.4;
-  font-weight:600;color:var(--text)}
-.card-q em{font-style:italic;color:var(--verde-dark)}
-.card-sub{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.6}
-.card-body{padding:22px 28px 28px}
-
-/* OPTIONS */
+.card{background:var(--white);border-radius:24px;border:1px solid rgba(26,107,58,.13);box-shadow:0 6px 40px rgba(20,80,40,.07),0 1px 4px rgba(20,80,40,.04);overflow:hidden}
+.card-top{padding:28px 28px 22px;background:linear-gradient(135deg,var(--verde-pale) 0%,#f4fbf6 100%);border-bottom:1px solid rgba(26,107,58,.1)}
+.tag{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--verde);background:rgba(26,107,58,.12);padding:4px 11px;border-radius:99px;margin-bottom:11px}
+.card-q{font-family:'Playfair Display',serif;font-size:20px;line-height:1.4;font-weight:600;color:var(--text)}.card-q em{font-style:italic;color:var(--verde-dark)}
+.card-sub{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.6}.card-body{padding:22px 28px 28px}
 .opts{display:flex;flex-direction:column;gap:10px}
-.opt{display:flex;align-items:flex-start;gap:13px;padding:14px 16px;
-  border:1.5px solid rgba(26,107,58,.18);border-radius:var(--rsm);
-  cursor:pointer;transition:all .2s ease;background:var(--white);user-select:none}
+.opt{display:flex;align-items:flex-start;gap:13px;padding:14px 16px;border:1.5px solid rgba(26,107,58,.18);border-radius:var(--rsm);cursor:pointer;transition:all .2s ease;background:var(--white);user-select:none}
 .opt:hover{border-color:var(--verde-light);background:var(--verde-pale);transform:translateX(3px)}
-.opt.sel{border-color:var(--verde);background:var(--verde-pale);
-  transform:translateX(5px);box-shadow:0 2px 14px rgba(26,107,58,.15)}
-.opt-bul{width:28px;height:28px;flex-shrink:0;border-radius:50%;
-  background:var(--cream-dark);border:1.5px solid rgba(26,107,58,.22);
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:600;color:var(--muted);transition:all .2s;margin-top:1px}
+.opt.sel{border-color:var(--verde);background:var(--verde-pale);transform:translateX(5px);box-shadow:0 2px 14px rgba(26,107,58,.15)}
+.opt-bul{width:28px;height:28px;flex-shrink:0;border-radius:50%;background:var(--cream-dark);border:1.5px solid rgba(26,107,58,.22);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--muted);transition:all .2s;margin-top:1px}
 .opt.sel .opt-bul{background:var(--verde);border-color:var(--verde);color:#fff}
-.opt-txt{flex:1}
-.opt-t{font-size:14px;font-weight:500;color:var(--text);line-height:1.4}
-.opt-d{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5}
-
-/* BUTTONS */
+.opt-txt{flex:1}.opt-t{font-size:14px;font-weight:500;color:var(--text);line-height:1.4}.opt-d{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5}
 .btn-row{margin-top:20px}
-.btn{width:100%;padding:16px;
-  background:linear-gradient(135deg,var(--verde-dark) 0%,var(--verde) 100%);
-  color:#fff;border:none;border-radius:var(--rsm);
-  font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;
-  cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;justify-content:center;gap:8px}
-.btn:hover{opacity:.91;transform:translateY(-1px);box-shadow:0 8px 22px rgba(26,107,58,.28)}
-.btn:disabled{opacity:.38;cursor:not-allowed;transform:none;box-shadow:none}
-
-/* INTRO */
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--verde-dark) 0%,var(--verde) 100%);color:#fff;border:none;border-radius:var(--rsm);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{opacity:.91;transform:translateY(-1px);box-shadow:0 8px 22px rgba(26,107,58,.28)}.btn:disabled{opacity:.38;cursor:not-allowed;transform:none;box-shadow:none}
 .intro-hero{text-align:center;padding:8px 0 20px}
-.intro-badge{display:inline-block;background:var(--verde-pale);border:1px solid rgba(26,107,58,.28);
-  color:var(--verde-dark);font-size:11px;font-weight:600;text-transform:uppercase;
-  letter-spacing:.08em;padding:5px 14px;border-radius:99px;margin-bottom:16px}
-.intro-hero h1{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;
-  line-height:1.3;color:var(--text);margin-bottom:12px}
-.intro-hero h1 em{font-style:italic;color:var(--verde)}
+.intro-badge{display:inline-block;background:var(--verde-pale);border:1px solid rgba(26,107,58,.28);color:var(--verde-dark);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:5px 14px;border-radius:99px;margin-bottom:16px}
+.intro-hero h1{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1.3;color:var(--text);margin-bottom:12px}.intro-hero h1 em{font-style:italic;color:var(--verde)}
 .intro-hero p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px}
-.trust-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:22px}
-.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
-
-/* LEAD FORM */
-.lead-hero{text-align:center;padding:6px 0 20px}
-.big-emoji{font-size:38px;display:block;margin-bottom:10px}
-.lead-hero h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;
-  color:var(--text);margin-bottom:8px;line-height:1.3}
-.lead-hero h2 em{font-style:italic;color:var(--verde)}
-.lead-hero p{font-size:13px;color:var(--muted);line-height:1.65}
-.form-f{margin-bottom:13px}
-.form-f label{display:block;font-size:11px;font-weight:600;color:var(--muted);
-  text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-.form-f input{width:100%;padding:13px 15px;border:1.5px solid rgba(26,107,58,.22);
-  border-radius:var(--rsm);font-family:'DM Sans',sans-serif;font-size:14px;
-  color:var(--text);background:var(--white);outline:none;transition:border-color .15s,box-shadow .15s}
-.form-f input:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(26,107,58,.1)}
-.form-f input::placeholder{color:var(--light)}
-.form-f .ferr{font-size:11px;color:#c0392b;margin-top:4px;display:none}
-.form-f.err input{border-color:#c0392b}
-.form-f.err .ferr{display:block}
+.trust-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:22px}.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.lead-hero{text-align:center;padding:6px 0 20px}.big-emoji{font-size:38px;display:block;margin-bottom:10px}
+.lead-hero h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.3}.lead-hero h2 em{font-style:italic;color:var(--verde)}
+.lead-hero p{font-size:13px;color:var(--muted);line-height:1.65}.form-f{margin-bottom:13px}
+.form-f label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.form-f input{width:100%;padding:13px 15px;border:1.5px solid rgba(26,107,58,.22);border-radius:var(--rsm);font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--white);outline:none;transition:border-color .15s,box-shadow .15s}
+.form-f input:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(26,107,58,.1)}.form-f input::placeholder{color:var(--light)}
+.form-f .ferr{font-size:11px;color:#c0392b;margin-top:4px;display:none}.form-f.err input{border-color:#c0392b}.form-f.err .ferr{display:block}
 .priv{font-size:11px;color:var(--light);text-align:center;margin-top:12px;line-height:1.6}
-
-/* RESULT — QUALIFIED */
 .res-hero{text-align:center;padding:4px 0 22px}
-.res-badge{display:inline-flex;align-items:center;gap:7px;background:var(--verde-pale);
-  border:1px solid rgba(26,107,58,.28);border-radius:99px;padding:7px 18px;
-  font-size:11px;font-weight:600;color:var(--verde-dark);margin-bottom:14px;
-  text-transform:uppercase;letter-spacing:.06em}
-.res-hero h2{font-family:'Playfair Display',serif;font-size:23px;font-weight:700;
-  color:var(--text);line-height:1.3;margin-bottom:10px}
-.res-hero h2 em{font-style:italic;color:var(--verde)}
+.res-badge{display:inline-flex;align-items:center;gap:7px;background:var(--verde-pale);border:1px solid rgba(26,107,58,.28);border-radius:99px;padding:7px 18px;font-size:11px;font-weight:600;color:var(--verde-dark);margin-bottom:14px;text-transform:uppercase;letter-spacing:.06em}
+.res-hero h2{font-family:'Playfair Display',serif;font-size:23px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:10px}.res-hero h2 em{font-style:italic;color:var(--verde)}
 .res-hero p{font-size:13px;color:var(--muted);line-height:1.7}
-
-/* INSIGHT BOX */
-.insight-box{background:var(--verde-pale);border:1px solid rgba(26,107,58,.18);
-  border-radius:var(--rsm);padding:18px;margin:18px 0}
-.insight-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;
-  color:var(--verde);font-weight:600;margin-bottom:11px}
-.insight-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:9px}
-.insight-item:last-child{margin-bottom:0}
-.insight-dot{width:20px;height:20px;border-radius:50%;background:var(--verde);
-  color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;margin-top:1px;font-weight:600}
-.insight-item p{font-size:13px;color:var(--muted);line-height:1.5}
-.insight-item p strong{color:var(--text);font-weight:500}
-
-/* SESSION CARD — QUALIFIED */
-.session-card{border:1.5px solid rgba(26,107,58,.28);border-radius:var(--rsm);
-  padding:22px;margin-bottom:18px;position:relative;overflow:hidden}
-.session-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--verde-dark),var(--verde-light))}
-.session-tag{font-size:11px;text-transform:uppercase;letter-spacing:.1em;
-  color:var(--verde);font-weight:600;margin-bottom:6px}
-.session-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;
-  color:var(--text);margin-bottom:5px}
+.insight-box{background:var(--verde-pale);border:1px solid rgba(26,107,58,.18);border-radius:var(--rsm);padding:18px;margin:18px 0}
+.insight-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--verde);font-weight:600;margin-bottom:11px}
+.insight-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:9px}.insight-item:last-child{margin-bottom:0}
+.insight-dot{width:20px;height:20px;border-radius:50%;background:var(--verde);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-weight:600}
+.insight-item p{font-size:13px;color:var(--muted);line-height:1.5}.insight-item p strong{color:var(--text);font-weight:500}
+.session-card{border:1.5px solid rgba(26,107,58,.28);border-radius:var(--rsm);padding:22px;margin-bottom:18px;position:relative;overflow:hidden}
+.session-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--verde-dark),var(--verde-light))}
+.session-tag{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--verde);font-weight:600;margin-bottom:6px}
+.session-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:5px}
 .session-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px}
-.session-pillars{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
-.sp-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--muted)}
-.spi{font-size:15px;width:20px;flex-shrink:0;margin-top:1px}
-.sp-item strong{color:var(--text);font-weight:500}
-
-/* CTA BUTTON — QUALIFIED */
-.btn-qualified{width:100%;padding:17px;
-  background:linear-gradient(135deg,var(--verde-dark),var(--verde-light));
-  color:#fff;border:none;border-radius:var(--rsm);
-  font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;
-  cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
-.btn-qualified:hover{opacity:.92;transform:translateY(-1px);
-  box-shadow:0 8px 22px rgba(26,107,58,.3)}
-.next-steps{background:#f0faf5;border:1px solid rgba(26,107,58,.2);
-  border-radius:var(--rsm);padding:16px;margin-top:14px}
-.ns-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;
-  color:var(--verde);font-weight:600;margin-bottom:10px}
-.ns-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;
-  font-size:13px;color:var(--muted);line-height:1.5}
-.ns-item:last-child{margin-bottom:0}
-.ns-num{width:20px;height:20px;border-radius:50%;background:var(--verde);
-  color:#fff;font-size:10px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-
-/* WAITLIST RESULT */
+.session-pillars{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}.sp-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--muted)}.spi{font-size:15px;width:20px;flex-shrink:0;margin-top:1px}.sp-item strong{color:var(--text);font-weight:500}
+.btn-qualified{width:100%;padding:17px;background:linear-gradient(135deg,var(--verde-dark),var(--verde-light));color:#fff;border:none;border-radius:var(--rsm);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
+.btn-qualified:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 8px 22px rgba(26,107,58,.3)}
+.next-steps{background:#f0faf5;border:1px solid rgba(26,107,58,.2);border-radius:var(--rsm);padding:16px;margin-top:14px}
+.ns-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--verde);font-weight:600;margin-bottom:10px}
+.ns-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:13px;color:var(--muted);line-height:1.5}.ns-item:last-child{margin-bottom:0}
+.ns-num{width:20px;height:20px;border-radius:50%;background:var(--verde);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .wait-hero{text-align:center;padding:4px 0 22px}
-.wait-badge{display:inline-flex;align-items:center;gap:7px;
-  background:#FFF8E1;border:1px solid rgba(217,119,6,.3);
-  border-radius:99px;padding:7px 18px;
-  font-size:11px;font-weight:600;color:#92400E;margin-bottom:14px;
-  text-transform:uppercase;letter-spacing:.06em}
-.wait-hero h2{font-family:'Playfair Display',serif;font-size:23px;font-weight:700;
-  color:var(--text);line-height:1.3;margin-bottom:10px}
-.wait-hero h2 em{font-style:italic;color:var(--verde)}
+.wait-badge{display:inline-flex;align-items:center;gap:7px;background:#FFF8E1;border:1px solid rgba(217,119,6,.3);border-radius:99px;padding:7px 18px;font-size:11px;font-weight:600;color:#92400E;margin-bottom:14px;text-transform:uppercase;letter-spacing:.06em}
+.wait-hero h2{font-family:'Playfair Display',serif;font-size:23px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:10px}.wait-hero h2 em{font-style:italic;color:var(--verde)}
 .wait-hero p{font-size:13px;color:var(--muted);line-height:1.7}
-.wait-box{background:#FFFBEB;border:1px solid rgba(217,119,6,.2);
-  border-radius:var(--rsm);padding:18px;margin:18px 0}
-.wait-box-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;
-  color:#D97706;font-weight:600;margin-bottom:11px}
-.wait-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:9px}
-.wait-item:last-child{margin-bottom:0}
-.wait-dot{width:20px;height:20px;border-radius:50%;background:#D97706;
-  color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;margin-top:1px}
-.wait-item p{font-size:13px;color:var(--muted);line-height:1.5}
-.wait-item p strong{color:var(--text);font-weight:500}
-.wait-confirm{background:var(--verde-pale);border:1px solid rgba(26,107,58,.2);
-  border-radius:var(--rsm);padding:18px;margin-bottom:16px;text-align:center}
+.wait-box{background:#FFFBEB;border:1px solid rgba(217,119,6,.2);border-radius:var(--rsm);padding:18px;margin:18px 0}
+.wait-box-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#D97706;font-weight:600;margin-bottom:11px}
+.wait-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:9px}.wait-item:last-child{margin-bottom:0}
+.wait-dot{width:20px;height:20px;border-radius:50%;background:#D97706;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.wait-item p{font-size:13px;color:var(--muted);line-height:1.5}.wait-item p strong{color:var(--text);font-weight:500}
+.wait-confirm{background:var(--verde-pale);border:1px solid rgba(26,107,58,.2);border-radius:var(--rsm);padding:18px;margin-bottom:16px;text-align:center}
 .wait-confirm-icon{font-size:36px;display:block;margin-bottom:10px}
-.wait-confirm h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;
-  color:var(--text);margin-bottom:8px}
+.wait-confirm h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px}
 .wait-confirm p{font-size:13px;color:var(--muted);line-height:1.65}
 .follow-box{background:var(--cream-dark);border-radius:var(--rsm);padding:16px;margin-top:16px}
-.follow-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;
-  color:var(--verde);font-weight:600;margin-bottom:10px}
-.follow-item{display:flex;align-items:center;gap:10px;margin-bottom:8px;
-  font-size:13px;color:var(--muted);line-height:1.5}
-.follow-item:last-child{margin-bottom:0}
-.follow-item span:first-child{font-size:16px;flex-shrink:0}
-
-@media(max-width:420px){
-  .card-top,.card-body{padding-left:18px;padding-right:18px}
-  .card-q{font-size:18px}
-  .intro-hero h1{font-size:22px}
-  .res-hero h2,.wait-hero h2{font-size:20px}
-}
+.follow-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--verde);font-weight:600;margin-bottom:10px}
+.follow-item{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:13px;color:var(--muted);line-height:1.5}.follow-item:last-child{margin-bottom:0}.follow-item span:first-child{font-size:16px;flex-shrink:0}
+@media(max-width:420px){.card-top,.card-body{padding-left:18px;padding-right:18px}.card-q{font-size:18px}.intro-hero h1{font-size:22px}.res-hero h2,.wait-hero h2{font-size:20px}}
 </style>
 </head>
 <body>
 <div class="app">
-
-  <div class="topbar">
-    <div class="logo">método <em>além do peso</em></div>
-  </div>
-
+  <div class="topbar"><div class="logo">método <em>além do peso</em></div></div>
   <div class="prog-wrap" id="progWrap" style="display:none">
-    <div class="prog-meta">
-      <span>Descubra seu perfil</span>
-      <span class="prog-n" id="progN">Pergunta 1 de 6</span>
-    </div>
+    <div class="prog-meta"><span>Descubra seu perfil</span><span class="prog-n" id="progN">Pergunta 1 de 6</span></div>
     <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
   </div>
 
-  <!-- ═══════════════ INTRO ═══════════════ -->
+  <!-- INTRO -->
   <div class="screen active" id="s0">
     <div class="card">
       <div class="card-top">
@@ -261,17 +114,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         </div>
       </div>
       <div class="card-body">
-        <div class="btn-row">
-          <button class="btn" onclick="goTo('s1')">Quero descobrir meu perfil →</button>
-        </div>
-        <p style="text-align:center;font-size:12px;color:var(--light);margin-top:12px">
-          Nutrição que te vê antes de te pesar · @nutrialemdopeso
-        </p>
+        <div class="btn-row"><button class="btn" onclick="goTo('s1')">Quero descobrir meu perfil →</button></div>
+        <p style="text-align:center;font-size:12px;color:var(--light);margin-top:12px">Nutrição que te vê antes de te pesar · @nutrialemdopeso</p>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ Q1 ═══════════════ -->
+  <!-- Q1 -->
   <div class="screen" id="s1">
     <div class="card">
       <div class="card-top">
@@ -280,41 +129,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       </div>
       <div class="card-body">
         <div class="opts">
-          <div class="opt" onclick="sel(this,'q1','a','btn1')">
-            <div class="opt-bul">A</div>
-            <div class="opt-txt">
-              <div class="opt-t">Começo bem e depois me perco</div>
-              <div class="opt-d">Inicio a semana focada, mas qualquer imprevisto desestrutura tudo.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q1','b','btn1')">
-            <div class="opt-bul">B</div>
-            <div class="opt-txt">
-              <div class="opt-t">Emagreço, mas sempre volto ao peso anterior</div>
-              <div class="opt-d">Já perdi os mesmos quilos mais de uma vez. Parece um ciclo sem fim.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q1','c','btn1')">
-            <div class="opt-bul">C</div>
-            <div class="opt-txt">
-              <div class="opt-t">Sei o que fazer, mas não consigo manter</div>
-              <div class="opt-d">Tenho o conhecimento, mas na prática a rotina não sustenta.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q1','d','btn1')">
-            <div class="opt-bul">D</div>
-            <div class="opt-txt">
-              <div class="opt-t">Estou cansada de recomeçar do zero</div>
-              <div class="opt-d">Cada recomeço é mais pesado do que o anterior, física e emocionalmente.</div>
-            </div>
-          </div>
+          <div class="opt" onclick="sel(this,'q1','a','btn1')"><div class="opt-bul">A</div><div class="opt-txt"><div class="opt-t">Começo bem e depois me perco</div><div class="opt-d">Inicio a semana focada, mas qualquer imprevisto desestrutura tudo.</div></div></div>
+          <div class="opt" onclick="sel(this,'q1','b','btn1')"><div class="opt-bul">B</div><div class="opt-txt"><div class="opt-t">Emagreço, mas sempre volto ao peso anterior</div><div class="opt-d">Já perdi os mesmos quilos mais de uma vez. Parece um ciclo sem fim.</div></div></div>
+          <div class="opt" onclick="sel(this,'q1','c','btn1')"><div class="opt-bul">C</div><div class="opt-txt"><div class="opt-t">Sei o que fazer, mas não consigo manter</div><div class="opt-d">Tenho o conhecimento, mas na prática a rotina não sustenta.</div></div></div>
+          <div class="opt" onclick="sel(this,'q1','d','btn1')"><div class="opt-bul">D</div><div class="opt-txt"><div class="opt-t">Estou cansada de recomeçar do zero</div><div class="opt-d">Cada recomeço é mais pesado do que o anterior, física e emocionalmente.</div></div></div>
         </div>
         <div class="btn-row"><button class="btn" id="btn1" disabled onclick="goTo('s2')">Próxima →</button></div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ Q2 ═══════════════ -->
+  <!-- Q2 -->
   <div class="screen" id="s2">
     <div class="card">
       <div class="card-top">
@@ -323,41 +148,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       </div>
       <div class="card-body">
         <div class="opts">
-          <div class="opt" onclick="sel(this,'q2','a','btn2')">
-            <div class="opt-bul">A</div>
-            <div class="opt-txt">
-              <div class="opt-t">Menos de 1 ano</div>
-              <div class="opt-d">É recente, mas já sinto que está virando um padrão.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q2','b','btn2')">
-            <div class="opt-bul">B</div>
-            <div class="opt-txt">
-              <div class="opt-t">Entre 1 e 3 anos</div>
-              <div class="opt-d">Já tentei algumas coisas, mas o ciclo continua.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q2','c','btn2')">
-            <div class="opt-bul">C</div>
-            <div class="opt-txt">
-              <div class="opt-t">Mais de 3 anos</div>
-              <div class="opt-d">Esse ciclo já faz parte da minha vida faz tempo.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q2','d','btn2')">
-            <div class="opt-bul">D</div>
-            <div class="opt-txt">
-              <div class="opt-t">A vida toda</div>
-              <div class="opt-d">Desde criança ou adolescente já lido com esse ciclo.</div>
-            </div>
-          </div>
+          <div class="opt" onclick="sel(this,'q2','a','btn2')"><div class="opt-bul">A</div><div class="opt-txt"><div class="opt-t">Menos de 1 ano</div><div class="opt-d">É recente, mas já sinto que está virando um padrão.</div></div></div>
+          <div class="opt" onclick="sel(this,'q2','b','btn2')"><div class="opt-bul">B</div><div class="opt-txt"><div class="opt-t">Entre 1 e 3 anos</div><div class="opt-d">Já tentei algumas coisas, mas o ciclo continua.</div></div></div>
+          <div class="opt" onclick="sel(this,'q2','c','btn2')"><div class="opt-bul">C</div><div class="opt-txt"><div class="opt-t">Mais de 3 anos</div><div class="opt-d">Esse ciclo já faz parte da minha vida faz tempo.</div></div></div>
+          <div class="opt" onclick="sel(this,'q2','d','btn2')"><div class="opt-bul">D</div><div class="opt-txt"><div class="opt-t">A vida toda</div><div class="opt-d">Desde criança ou adolescente já lido com esse ciclo.</div></div></div>
         </div>
         <div class="btn-row"><button class="btn" id="btn2" disabled onclick="goTo('s3')">Próxima →</button></div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ Q3 ═══════════════ -->
+  <!-- Q3 -->
   <div class="screen" id="s3">
     <div class="card">
       <div class="card-top">
@@ -367,41 +168,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       </div>
       <div class="card-body">
         <div class="opts">
-          <div class="opt" onclick="sel(this,'q3','a','btn3')">
-            <div class="opt-bul">A</div>
-            <div class="opt-txt">
-              <div class="opt-t">Estresse e ansiedade</div>
-              <div class="opt-d">Quando a pressão aumenta, a alimentação é a primeira a desmoronar.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q3','b','btn3')">
-            <div class="opt-bul">B</div>
-            <div class="opt-txt">
-              <div class="opt-t">Rotina corrida e falta de tempo</div>
-              <div class="opt-d">Trabalho, família e compromissos deixam zero espaço para cuidar da alimentação.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q3','c','btn3')">
-            <div class="opt-bul">C</div>
-            <div class="opt-txt">
-              <div class="opt-t">Eventos sociais e saídas</div>
-              <div class="opt-d">Restaurantes, festas e reuniões tiram tudo dos trilhos.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q3','d','btn3')">
-            <div class="opt-bul">D</div>
-            <div class="opt-txt">
-              <div class="opt-t">Compulsão ou vontade de comer à noite</div>
-              <div class="opt-d">Um gatilho emocional específico que aparece sempre.</div>
-            </div>
-          </div>
+          <div class="opt" onclick="sel(this,'q3','a','btn3')"><div class="opt-bul">A</div><div class="opt-txt"><div class="opt-t">Estresse e ansiedade</div><div class="opt-d">Quando a pressão aumenta, a alimentação é a primeira a desmoronar.</div></div></div>
+          <div class="opt" onclick="sel(this,'q3','b','btn3')"><div class="opt-bul">B</div><div class="opt-txt"><div class="opt-t">Rotina corrida e falta de tempo</div><div class="opt-d">Trabalho, família e compromissos deixam zero espaço para cuidar da alimentação.</div></div></div>
+          <div class="opt" onclick="sel(this,'q3','c','btn3')"><div class="opt-bul">C</div><div class="opt-txt"><div class="opt-t">Eventos sociais e saídas</div><div class="opt-d">Restaurantes, festas e reuniões tiram tudo dos trilhos.</div></div></div>
+          <div class="opt" onclick="sel(this,'q3','d','btn3')"><div class="opt-bul">D</div><div class="opt-txt"><div class="opt-t">Compulsão ou vontade de comer à noite</div><div class="opt-d">Um gatilho emocional específico que aparece sempre.</div></div></div>
         </div>
         <div class="btn-row"><button class="btn" id="btn3" disabled onclick="goTo('s4')">Próxima →</button></div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ Q4 ═══════════════ -->
+  <!-- Q4 -->
   <div class="screen" id="s4">
     <div class="card">
       <div class="card-top">
@@ -410,41 +187,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       </div>
       <div class="card-body">
         <div class="opts">
-          <div class="opt" onclick="sel(this,'q4','a','btn4')">
-            <div class="opt-bul">A</div>
-            <div class="opt-txt">
-              <div class="opt-t">Não, nunca fiz</div>
-              <div class="opt-d">Sempre tentei sozinha, com dietas da internet ou grupos.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q4','b','btn4')">
-            <div class="opt-bul">B</div>
-            <div class="opt-txt">
-              <div class="opt-t">Sim, fiz e emagreci, mas voltei ao peso</div>
-              <div class="opt-d">O resultado apareceu, mas não se sustentou quando o acompanhamento terminou.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q4','c','btn4')">
-            <div class="opt-bul">C</div>
-            <div class="opt-txt">
-              <div class="opt-t">Sim, fiz mas não tive resultado</div>
-              <div class="opt-d">Segui o que me passaram, mas não funcionou para minha realidade.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q4','d','btn4')">
-            <div class="opt-bul">D</div>
-            <div class="opt-txt">
-              <div class="opt-t">Já fiz várias vezes, com resultados diferentes</div>
-              <div class="opt-d">Muitas tentativas, poucos resultados duradouros.</div>
-            </div>
-          </div>
+          <div class="opt" onclick="sel(this,'q4','a','btn4')"><div class="opt-bul">A</div><div class="opt-txt"><div class="opt-t">Não, nunca fiz</div><div class="opt-d">Sempre tentei sozinha, com dietas da internet ou grupos.</div></div></div>
+          <div class="opt" onclick="sel(this,'q4','b','btn4')"><div class="opt-bul">B</div><div class="opt-txt"><div class="opt-t">Sim, fiz e emagreci, mas voltei ao peso</div><div class="opt-d">O resultado apareceu, mas não se sustentou quando o acompanhamento terminou.</div></div></div>
+          <div class="opt" onclick="sel(this,'q4','c','btn4')"><div class="opt-bul">C</div><div class="opt-txt"><div class="opt-t">Sim, fiz mas não tive resultado</div><div class="opt-d">Segui o que me passaram, mas não funcionou para minha realidade.</div></div></div>
+          <div class="opt" onclick="sel(this,'q4','d','btn4')"><div class="opt-bul">D</div><div class="opt-txt"><div class="opt-t">Já fiz várias vezes, com resultados diferentes</div><div class="opt-d">Muitas tentativas, poucos resultados duradouros.</div></div></div>
         </div>
         <div class="btn-row"><button class="btn" id="btn4" disabled onclick="goTo('s5')">Próxima →</button></div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ Q5 ═══════════════ -->
+  <!-- Q5 -->
   <div class="screen" id="s5">
     <div class="card">
       <div class="card-top">
@@ -454,41 +207,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       </div>
       <div class="card-body">
         <div class="opts">
-          <div class="opt" onclick="sel(this,'q5','a','btn5')">
-            <div class="opt-bul">A</div>
-            <div class="opt-txt">
-              <div class="opt-t">Saúde é prioridade, mas o momento não permite</div>
-              <div class="opt-d">Há outras urgências financeiras acontecendo agora.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q5','b','btn5')">
-            <div class="opt-bul">B</div>
-            <div class="opt-txt">
-              <div class="opt-t">Invisto quando sinto que vai valer a pena</div>
-              <div class="opt-d">Preciso entender o que recebo antes de decidir.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q5','c','btn5')">
-            <div class="opt-bul">C</div>
-            <div class="opt-txt">
-              <div class="opt-t">Saúde está entre minhas prioridades de investimento</div>
-              <div class="opt-d">Quando algo faz sentido para mim, não hesito.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q5','d','btn5')">
-            <div class="opt-bul">D</div>
-            <div class="opt-txt">
-              <div class="opt-t">Invisto continuamente no meu bem-estar</div>
-              <div class="opt-d">Cuido da saúde como um compromisso permanente, não eventual.</div>
-            </div>
-          </div>
+          <div class="opt" onclick="sel(this,'q5','a','btn5')"><div class="opt-bul">A</div><div class="opt-txt"><div class="opt-t">Saúde é prioridade, mas o momento não permite</div><div class="opt-d">Há outras urgências financeiras acontecendo agora.</div></div></div>
+          <div class="opt" onclick="sel(this,'q5','b','btn5')"><div class="opt-bul">B</div><div class="opt-txt"><div class="opt-t">Invisto quando sinto que vai valer a pena</div><div class="opt-d">Preciso entender o que recebo antes de decidir.</div></div></div>
+          <div class="opt" onclick="sel(this,'q5','c','btn5')"><div class="opt-bul">C</div><div class="opt-txt"><div class="opt-t">Saúde está entre minhas prioridades de investimento</div><div class="opt-d">Quando algo faz sentido para mim, não hesito.</div></div></div>
+          <div class="opt" onclick="sel(this,'q5','d','btn5')"><div class="opt-bul">D</div><div class="opt-txt"><div class="opt-t">Invisto continuamente no meu bem-estar</div><div class="opt-d">Cuido da saúde como um compromisso permanente, não eventual.</div></div></div>
         </div>
         <div class="btn-row"><button class="btn" id="btn5" disabled onclick="goTo('s6')">Próxima →</button></div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ Q6 ═══════════════ -->
+  <!-- Q6 -->
   <div class="screen" id="s6">
     <div class="card">
       <div class="card-top">
@@ -498,41 +227,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       </div>
       <div class="card-body">
         <div class="opts">
-          <div class="opt" onclick="sel(this,'q6','a','btn6')">
-            <div class="opt-bul">A</div>
-            <div class="opt-txt">
-              <div class="opt-t">Emagrecer o mais rápido possível</div>
-              <div class="opt-d">Quero ver o número na balança cair, independente de como.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q6','b','btn6')">
-            <div class="opt-bul">B</div>
-            <div class="opt-txt">
-              <div class="opt-t">Emagrecer e nunca mais precisar recomeçar</div>
-              <div class="opt-d">Quero resolver isso de vez: não mais uma dieta, mas uma estrutura real.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q6','c','btn6')">
-            <div class="opt-bul">C</div>
-            <div class="opt-txt">
-              <div class="opt-t">Ter paz com a alimentação sem sofrimento</div>
-              <div class="opt-d">Comer sem culpa, sem rigidez, e manter o resultado naturalmente.</div>
-            </div>
-          </div>
-          <div class="opt" onclick="sel(this,'q6','d','btn6')">
-            <div class="opt-bul">D</div>
-            <div class="opt-txt">
-              <div class="opt-t">Ainda não sei ao certo, estou explorando</div>
-              <div class="opt-d">Ainda estou entendendo o que preciso e qual é meu próximo passo.</div>
-            </div>
-          </div>
+          <div class="opt" onclick="sel(this,'q6','a','btn6')"><div class="opt-bul">A</div><div class="opt-txt"><div class="opt-t">Emagrecer o mais rápido possível</div><div class="opt-d">Quero ver o número na balança cair, independente de como.</div></div></div>
+          <div class="opt" onclick="sel(this,'q6','b','btn6')"><div class="opt-bul">B</div><div class="opt-txt"><div class="opt-t">Emagrecer e nunca mais precisar recomeçar</div><div class="opt-d">Quero resolver isso de vez: não mais uma dieta, mas uma estrutura real.</div></div></div>
+          <div class="opt" onclick="sel(this,'q6','c','btn6')"><div class="opt-bul">C</div><div class="opt-txt"><div class="opt-t">Ter paz com a alimentação sem sofrimento</div><div class="opt-d">Comer sem culpa, sem rigidez, e manter o resultado naturalmente.</div></div></div>
+          <div class="opt" onclick="sel(this,'q6','d','btn6')"><div class="opt-bul">D</div><div class="opt-txt"><div class="opt-t">Ainda não sei ao certo, estou explorando</div><div class="opt-d">Ainda estou entendendo o que preciso e qual é meu próximo passo.</div></div></div>
         </div>
         <div class="btn-row"><button class="btn" id="btn6" disabled onclick="goTo('slead')">Ver meu resultado →</button></div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ CAPTURA DE LEAD ═══════════════ -->
+  <!-- CAPTURA DE LEAD -->
   <div class="screen" id="slead">
     <div class="card">
       <div class="card-top" style="background:linear-gradient(135deg,var(--verde-pale),#f4fbf6)">
@@ -543,30 +248,16 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         </div>
       </div>
       <div class="card-body">
-        <div class="form-f" id="ff-nome">
-          <label>Seu nome</label>
-          <input type="text" id="f-nome" placeholder="Como posso te chamar?">
-          <div class="ferr">Por favor, informe seu nome.</div>
-        </div>
-        <div class="form-f" id="ff-wpp">
-          <label>WhatsApp</label>
-          <input type="tel" id="f-wpp" placeholder="(11) 99999-9999" maxlength="15">
-          <div class="ferr">WhatsApp inválido.</div>
-        </div>
-        <div class="form-f" id="ff-email">
-          <label>E-mail</label>
-          <input type="email" id="f-email" placeholder="seu@email.com">
-          <div class="ferr">E-mail inválido.</div>
-        </div>
-        <div class="btn-row">
-          <button class="btn" id="btnLead" onclick="submitLead()">Quero ver meu resultado →</button>
-        </div>
+        <div class="form-f" id="ff-nome"><label>Seu nome</label><input type="text" id="f-nome" placeholder="Como posso te chamar?"><div class="ferr">Por favor, informe seu nome.</div></div>
+        <div class="form-f" id="ff-wpp"><label>WhatsApp</label><input type="tel" id="f-wpp" placeholder="(11) 99999-9999" maxlength="15"><div class="ferr">WhatsApp inválido.</div></div>
+        <div class="form-f" id="ff-email"><label>E-mail</label><input type="email" id="f-email" placeholder="seu@email.com"><div class="ferr">E-mail inválido.</div></div>
+        <div class="btn-row"><button class="btn" id="btnLead" onclick="submitLead()">Quero ver meu resultado →</button></div>
         <p class="priv">🔒 Seus dados estão seguros. Sem spam, prometido.</p>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ RESULTADO: QUALIFICADA ═══════════════ -->
+  <!-- RESULTADO: QUALIFICADA -->
   <div class="screen" id="squalified">
     <div class="card">
       <div class="card-top" style="background:linear-gradient(135deg,var(--verde-pale),#f0fbf5)">
@@ -577,18 +268,14 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         </div>
       </div>
       <div class="card-body">
-
         <div class="insight-box">
           <div class="insight-label">🔍 O que identificamos no seu perfil</div>
           <div id="q-insights"></div>
         </div>
-
         <div class="session-card">
           <div class="session-tag">✦ Seu próximo passo</div>
-          <div class="session-name">Sessão Diagnóstica Gratuita</div>
-          <div class="session-desc">
-            Baseado no seu perfil, você foi selecionada para uma Sessão Diagnóstica exclusiva de 60 minutos. Poucas vagas são abertas por mês, e cada uma é reservada para mulheres que demonstraram, pelas respostas, estar prontas para uma mudança real. Nessa conversa, analisamos exatamente o que está travando a sua sustentação de resultado e qual é o caminho para resolver isso de vez.
-          </div>
+          <div class="session-name">Sessão Diagnóstica</div>
+          <div class="session-desc">Baseado no seu perfil, você foi selecionada para uma Sessão Diagnóstica exclusiva de 60 minutos. Poucas vagas são abertas por mês, e cada uma é reservada para mulheres que demonstraram, pelas respostas, estar prontas para uma mudança real. Nessa conversa, analisamos exatamente o que está travando a sua sustentação de resultado e qual é o caminho para resolver isso de vez.</div>
           <div class="session-pillars">
             <div class="sp-item"><span class="spi">🎯</span><div><strong>Diagnóstico do seu padrão alimentar real:</strong> entendemos por que você sempre volta ao ponto inicial</div></div>
             <div class="sp-item"><span class="spi">🗺️</span><div><strong>Mapeamento dos seus gatilhos:</strong> o que especificamente desestrutura sua alimentação</div></div>
@@ -596,45 +283,28 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
             <div class="sp-item"><span class="spi">✨</span><div><strong>Acesso exclusivo e por convite:</strong> a sessão é oferecida apenas para perfis selecionados pelo diagnóstico. Poucas vagas abertas por mês.</div></div>
           </div>
         </div>
-
         <div class="next-steps">
           <div class="ns-label">✅ O que acontece agora</div>
-          <div class="ns-item">
-            <div class="ns-num">1</div>
-            <p>Você está confirmada como <strong>selecionada para a Sessão Diagnóstica</strong> do Método Além do Peso</p>
-          </div>
-          <div class="ns-item">
-            <div class="ns-num">2</div>
-            <p>Em até <strong>24h úteis</strong> vou entrar em contato pelo WhatsApp para agendarmos sua sessão</p>
-          </div>
-          <div class="ns-item">
-            <div class="ns-num">3</div>
-            <p>Na sessão, mergulhamos no seu histórico e você sai com clareza real, não com mais uma dieta</p>
-          </div>
+          <div class="ns-item"><div class="ns-num">1</div><p>Você está confirmada como <strong>selecionada para a Sessão Diagnóstica</strong> do Método Além do Peso</p></div>
+          <div class="ns-item"><div class="ns-num">2</div><p>Em até <strong>24h úteis</strong> vou entrar em contato pelo WhatsApp para agendarmos sua sessão</p></div>
+          <div class="ns-item"><div class="ns-num">3</div><p>Na sessão, mergulhamos no seu histórico e você sai com clareza real, não com mais uma dieta</p></div>
         </div>
-
         <div style="margin-top:20px">
           <p style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:12px;font-weight:500;text-transform:uppercase;letter-spacing:.07em">Prefere já iniciar a conversa?</p>
-          <a href="https://wa.me/5511957471121?text=Oi%2C%20fui%20selecionada%20de%20maneira%20exclusiva%20para%20a%20sess%C3%A3o%20diagn%C3%B3stica."
-             target="_blank"
-             style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;background:linear-gradient(135deg,#1a7a3a,#25a550);color:#fff;border:none;border-radius:var(--rsm);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:all .2s;box-shadow:0 4px 18px rgba(26,107,58,.25)"
-             onmouseover="this.style.opacity='.92';this.style.transform='translateY(-1px)'"
-             onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+          <a href="https://wa.me/5511957471121?text=Oi%2C%20fui%20selecionada%20de%20maneira%20exclusiva%20para%20a%20sess%C3%A3o%20diagn%C3%B3stica." target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;background:linear-gradient(135deg,#1a7a3a,#25a550);color:#fff;border:none;border-radius:var(--rsm);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:all .2s;box-shadow:0 4px 18px rgba(26,107,58,.25)" onmouseover="this.style.opacity='.92';this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Quero entrar em contato agora
           </a>
           <p style="font-size:11px;color:var(--light);text-align:center;margin-top:10px">Ou aguarde: entro em contato em até 24h úteis pelo WhatsApp</p>
         </div>
-
         <div style="background:var(--verde-pale);border:1px solid rgba(26,107,58,.2);border-radius:var(--rsm);padding:14px 16px;margin-top:16px;font-size:13px;color:var(--muted);line-height:1.6;text-align:center">
           💭 <strong style="color:var(--text)">Enquanto aguarda:</strong> me siga no Instagram <strong style="color:var(--verde)">@nutrialemdopeso</strong> para receber conteúdo que vai fazer ainda mais sentido depois da nossa conversa.
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ RESULTADO: LISTA DE ESPERA ═══════════════ -->
+  <!-- RESULTADO: LISTA DE ESPERA -->
   <div class="screen" id="swaitlist">
     <div class="card">
       <div class="card-top" style="background:linear-gradient(135deg,#FFFBEB,#fff)">
@@ -645,220 +315,130 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         </div>
       </div>
       <div class="card-body">
-
         <div class="wait-confirm">
           <span class="wait-confirm-icon">📋</span>
           <h3>Seu cadastro foi registrado</h3>
           <p>Assim que surgir uma vaga disponível no Método Além do Peso que se encaixe no seu momento atual, entraremos em contato pelo WhatsApp que você informou.</p>
         </div>
-
         <div class="wait-box">
           <div class="wait-box-label">💛 Por que você está na lista de espera</div>
           <div id="w-insights"></div>
         </div>
-
         <div class="follow-box">
           <div class="follow-label">✨ O que fazer enquanto aguarda</div>
-          <div class="follow-item">
-            <span>📱</span>
-            <span>Siga <strong>@nutrialemdopeso</strong> no Instagram: o conteúdo gratuito já vai te ajudar a entender seu ciclo</span>
-          </div>
-          <div class="follow-item">
-            <span>🎯</span>
-            <span>Observe seus padrões: o que te faz sair dos trilhos? Anote. Isso vai acelerar muito nossa conversa quando chegar sua vez</span>
-          </div>
-          <div class="follow-item">
-            <span>💌</span>
-            <span>Fique de olho no seu WhatsApp: quando abrir uma vaga, você será uma das primeiras a saber</span>
-          </div>
+          <div class="follow-item"><span>📱</span><span>Siga <strong>@nutrialemdopeso</strong> no Instagram: o conteúdo gratuito já vai te ajudar a entender seu ciclo</span></div>
+          <div class="follow-item"><span>🎯</span><span>Observe seus padrões: o que te faz sair dos trilhos? Anote. Isso vai acelerar muito nossa conversa quando chegar sua vez</span></div>
+          <div class="follow-item"><span>💌</span><span>Fique de olho no seu WhatsApp: quando abrir uma vaga, você será uma das primeiras a saber</span></div>
         </div>
-
         <div style="background:#f0faf5;border:1px solid rgba(26,107,58,.2);border-radius:var(--rsm);padding:14px 16px;margin-top:16px;font-size:13px;color:#2a6e47;line-height:1.6;text-align:center">
           ✨ <strong>Você não está descartada: seu momento está chegando.</strong> O Método Além do Peso funciona quando a pessoa está pronta. E você vai estar.
         </div>
-
       </div>
     </div>
   </div>
 
-</div><!-- /app -->
-
+</div>
 <script>
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGMqfV1M6cHXytrS9_nNCTHJfDNIT82gnuMCJzlIQCCKHTWiaIWw-ZvRJL6gFje6PgoQ/exec';
-
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzt5WDJd5vSGe1OkIeMzpPZphIFqndAMiPwEC-YqsEjCRnEAC0ktk13B9IKrQ01iYdFaw/exec';
 const answers = {};
 
 function goTo(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
-
   const qMap = {s1:1,s2:2,s3:3,s4:4,s5:5,s6:6};
-  const prog  = document.getElementById('progWrap');
-  const fill  = document.getElementById('progFill');
+  const prog = document.getElementById('progWrap');
+  const fill = document.getElementById('progFill');
   const label = document.getElementById('progN');
-  const q     = qMap[id];
-
-  if (q) {
-    prog.style.display = 'block';
-    fill.style.width   = ((q-1)/6*100)+'%';
-    label.textContent  = 'Pergunta '+q+' de 6';
-  } else if (id === 'slead') {
-    prog.style.display = 'block';
-    fill.style.width   = '100%';
-    label.textContent  = 'Quase lá! ✨';
-  } else {
-    prog.style.display = 'none';
-  }
+  const q = qMap[id];
+  if(q){prog.style.display='block';fill.style.width=((q-1)/6*100)+'%';label.textContent='Pergunta '+q+' de 6';}
+  else if(id==='slead'){prog.style.display='block';fill.style.width='100%';label.textContent='Quase lá! ✨';}
+  else{prog.style.display='none';}
 }
 
-function sel(el, q, val, btnId) {
-  el.closest('.opts').querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
+function sel(el,q,val,btnId){
+  el.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
   el.classList.add('sel');
-  answers[q] = val;
-  document.getElementById(btnId).disabled = false;
+  answers[q]=val;
+  document.getElementById(btnId).disabled=false;
 }
 
-// Máscara do WhatsApp
-document.getElementById('f-wpp').addEventListener('input', function(){
-  let v = this.value.replace(/\D/g,'');
-  if(v.length<=2)  v = v.replace(/(\d{0,2})/,'($1');
-  else if(v.length<=7)  v = v.replace(/(\d{2})(\d+)/,'($1) $2');
-  else if(v.length<=11) v = v.replace(/(\d{2})(\d{5})(\d+)/,'($1) $2-$3');
-  else v = v.replace(/(\d{2})(\d{5})(\d{4}).*/,'($1) $2-$3');
-  this.value = v;
+document.getElementById('f-wpp').addEventListener('input',function(){
+  let v=this.value.replace(/\D/g,'');
+  if(v.length<=2) v=v.replace(/(\d{0,2})/,'($1');
+  else if(v.length<=7) v=v.replace(/(\d{2})(\d+)/,'($1) $2');
+  else if(v.length<=11) v=v.replace(/(\d{2})(\d{5})(\d+)/,'($1) $2-$3');
+  else v=v.replace(/(\d{2})(\d{5})(\d{4}).*/,'($1) $2-$3');
+  this.value=v;
 });
 
-function submitLead() {
-  let ok = true;
-  const nome  = document.getElementById('f-nome').value.trim();
-  const wpp   = document.getElementById('f-wpp').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const fv = (id, valid) => {
-    document.getElementById('ff-'+id).classList.toggle('err',!valid);
-    if(!valid) ok = false;
-  };
-  fv('nome',  nome.length > 1);
-  fv('wpp',   wpp.length >= 13);
-  fv('email', email.includes('@') && email.includes('.'));
-  if(!ok) return;
-
-  const btn = document.getElementById('btnLead');
-  btn.disabled = true;
-  btn.textContent = 'Analisando seu perfil...';
-
-  // ─── LÓGICA DE QUALIFICAÇÃO ───────────────────────────────
-  // QUALIFICADA se:
-  //   q5 NÃO for 'a' (não está em crise financeira)
-  //   E q6 NÃO for 'a' (não quer só resultado rápido) NÃO for 'd' (ainda explorando)
-  //
-  // Você pode ajustar essas regras conforme quiser
-  const q5 = answers.q5 || 'a';
-  const q6 = answers.q6 || 'a';
-  const isQualified = (q5 !== 'a') && (q6 === 'b' || q6 === 'c');
-  // ──────────────────────────────────────────────────────────
-
-  // Envia dados para Google Sheets (se configurado)
-  const fd = new FormData();
-  fd.append('nome',  nome);
-  fd.append('whatsapp', wpp);
-  fd.append('email', email);
-  fd.append('qualificada', isQualified ? 'SIM' : 'NÃO');
-  Object.entries(answers).forEach(([k,v]) => fd.append(k,v));
-  if(APPS_SCRIPT_URL) {
-    fetch(APPS_SCRIPT_URL, {method:'POST', body:fd}).catch(()=>{});
-  }
-
-  setTimeout(() => showResult(nome, isQualified), 1600);
+function submitLead(){
+  let ok=true;
+  const nome=document.getElementById('f-nome').value.trim();
+  const wpp=document.getElementById('f-wpp').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const fv=(id,valid)=>{document.getElementById('ff-'+id).classList.toggle('err',!valid);if(!valid)ok=false;};
+  fv('nome',nome.length>1);
+  fv('wpp',wpp.length>=13);
+  fv('email',email.includes('@')&&email.includes('.'));
+  if(!ok)return;
+  const btn=document.getElementById('btnLead');
+  btn.disabled=true;
+  btn.textContent='Analisando seu perfil...';
+  const q5=answers.q5||'a';
+  const q6=answers.q6||'a';
+  const isQualified=(q5!=='a')&&(q6==='b'||q6==='c');
+  const params=new URLSearchParams({nome,whatsapp:wpp,email,qualificada:isQualified?'SIM':'NÃO',q1:answers.q1||'',q2:answers.q2||'',q3:answers.q3||'',q4:answers.q4||'',q5:answers.q5||'',q6:answers.q6||''});
+  if(APPS_SCRIPT_URL){fetch(APPS_SCRIPT_URL+'?'+params.toString(),{method:'GET'}).catch(()=>{});}
+  setTimeout(()=>showResult(nome,isQualified),1600);
 }
 
-// ─── CONTEÚDO DOS RESULTADOS ──────────────────────────────
-function buildInsights(container, items) {
-  container.innerHTML = '';
-  items.forEach((item, i) => {
-    container.innerHTML += `
-      <div class="insight-item">
-        <div class="insight-dot">${i+1}</div>
-        <p><strong>${item.t}:</strong> ${item.d}</p>
-      </div>`;
-  });
+function buildInsights(container,items){
+  container.innerHTML='';
+  items.forEach((item,i)=>{container.innerHTML+=`<div class="insight-item"><div class="insight-dot">${i+1}</div><p><strong>${item.t}:</strong> ${item.d}</p></div>`;});
 }
 
-function buildWaitInsights(container, items) {
-  container.innerHTML = '';
-  items.forEach(item => {
-    container.innerHTML += `
-      <div class="wait-item">
-        <div class="wait-dot">${item.icon}</div>
-        <p>${item.t}</p>
-      </div>`;
-  });
+function buildWaitInsights(container,items){
+  container.innerHTML='';
+  items.forEach(item=>{container.innerHTML+=`<div class="wait-item"><div class="wait-dot">${item.icon}</div><p>${item.t}</p></div>`;});
 }
 
-function showResult(nome, isQualified) {
-  const first = nome.split(' ')[0];
-  const q1 = answers.q1||'b';
-  const q3 = answers.q3||'b';
-  const q5 = answers.q5||'b';
-  const q6 = answers.q6||'b';
-
-  if (isQualified) {
-    // ── RESULTADO: QUALIFICADA ──
-    let title, desc, insights;
-
-    if (q1 === 'b' || q1 === 'd') {
-      title   = first+', você conhece bem esse <em>ciclo: chegou a hora de sair dele</em>';
-      desc    = 'Você já emagreceu antes e sabe que é capaz. O problema nunca foi emagrecer, foi manter. Isso não é falta de disciplina sua: é falta de estrutura. E estrutura é exatamente o que o Método Além do Peso entrega.';
-      insights = [
-        {t:'Você tem histórico de resultado', d:'Já provou que consegue. O que falta é um sistema que sustente esse resultado além do acompanhamento.'},
-        {t:'O ciclo tem causa identificável', d:'Esse padrão de retorno ao peso tem gatilhos específicos, e a gente vai mapear exatamente quais são os seus.'},
-        {t:'Você está no momento certo', d:'Cansaço do ciclo é o sinal mais claro de que você está pronta para uma mudança real, não mais uma dieta.'}
-      ];
-    } else if (q3 === 'b') {
-      title   = first+', a <em>rotina não é o inimigo:</em> ela só precisa de estrutura';
-      desc    = 'Você não falha porque é fraca. Você falha porque ninguém nunca te ensinou a encaixar a alimentação NA SUA rotina real, não em uma rotina imaginária e perfeita. Isso é o que resolvemos juntas.';
-      insights = [
-        {t:'Rotina e alimentação precisam conversar', d:'Um plano que não funciona quando a semana aperta não é um plano: é uma teoria.'},
-        {t:'Falta de tempo é sintoma, não causa', d:'A causa real é não ter uma estrutura simples que funciona automaticamente nos dias difíceis.'},
-        {t:'Você não precisa de mais força de vontade', d:'Precisa de um sistema que exija menos decisões diárias sobre o que comer.'}
-      ];
+function showResult(nome,isQualified){
+  const first=nome.split(' ')[0];
+  const q1=answers.q1||'b';
+  const q3=answers.q3||'b';
+  const q5=answers.q5||'b';
+  const q6=answers.q6||'b';
+  if(isQualified){
+    let title,desc,insights;
+    if(q1==='b'||q1==='d'){
+      title=first+', você conhece bem esse <em>ciclo: chegou a hora de sair dele</em>';
+      desc='Você já emagreceu antes e sabe que é capaz. O problema nunca foi emagrecer, foi manter. Isso não é falta de disciplina sua: é falta de estrutura. E estrutura é exatamente o que o Método Além do Peso entrega.';
+      insights=[{t:'Você tem histórico de resultado',d:'Já provou que consegue. O que falta é um sistema que sustente esse resultado além do acompanhamento.'},{t:'O ciclo tem causa identificável',d:'Esse padrão de retorno ao peso tem gatilhos específicos, e a gente vai mapear exatamente quais são os seus.'},{t:'Você está no momento certo',d:'Cansaço do ciclo é o sinal mais claro de que você está pronta para uma mudança real, não mais uma dieta.'}];
+    } else if(q3==='b'){
+      title=first+', a <em>rotina não é o inimigo:</em> ela só precisa de estrutura';
+      desc='Você não falha porque é fraca. Você falha porque ninguém nunca te ensinou a encaixar a alimentação NA SUA rotina real, não em uma rotina imaginária e perfeita. Isso é o que resolvemos juntas.';
+      insights=[{t:'Rotina e alimentação precisam conversar',d:'Um plano que não funciona quando a semana aperta não é um plano: é uma teoria.'},{t:'Falta de tempo é sintoma, não causa',d:'A causa real é não ter uma estrutura simples que funciona automaticamente nos dias difíceis.'},{t:'Você não precisa de mais força de vontade',d:'Precisa de um sistema que exija menos decisões diárias sobre o que comer.'}];
     } else {
-      title   = first+', você está <em>pronta para resolver isso de vez</em>';
-      desc    = 'Suas respostas mostram alguém que conhece o problema, já tentou várias saídas e está disposta a fazer diferente. Isso é exatamente o perfil de quem tem resultado real com o Método Além do Peso.';
-      insights = [
-        {t:'Autoconhecimento é seu maior ativo', d:'Você sabe o que acontece com você. Agora precisa de alguém que ajude a transformar esse conhecimento em sistema.'},
-        {t:'Motivação não é o problema', d:'Você não falta motivação. Falta uma estrutura que funcione além da motivação.'},
-        {t:'Momento certo para agir', d:'Quem chega até aqui e responde com honestidade está pronta para o próximo passo.'}
-      ];
+      title=first+', você está <em>pronta para resolver isso de vez</em>';
+      desc='Suas respostas mostram alguém que conhece o problema, já tentou várias saídas e está disposta a fazer diferente. Isso é exatamente o perfil de quem tem resultado real com o Método Além do Peso.';
+      insights=[{t:'Autoconhecimento é seu maior ativo',d:'Você sabe o que acontece com você. Agora precisa de alguém que ajude a transformar esse conhecimento em sistema.'},{t:'Motivação não é o problema',d:'Você não falta motivação. Falta uma estrutura que funcione além da motivação.'},{t:'Momento certo para agir',d:'Quem chega até aqui e responde com honestidade está pronta para o próximo passo.'}];
     }
-
-    document.getElementById('q-title').innerHTML = title;
-    document.getElementById('q-desc').textContent = desc;
-    buildInsights(document.getElementById('q-insights'), insights);
+    document.getElementById('q-title').innerHTML=title;
+    document.getElementById('q-desc').textContent=desc;
+    buildInsights(document.getElementById('q-insights'),insights);
     goTo('squalified');
-
   } else {
-    // ── RESULTADO: LISTA DE ESPERA ──
-    let wdesc, witems;
-
-    if (q5 === 'a') {
-      wdesc  = first+', entendemos que este não é o melhor momento financeiro para você. Registramos seu interesse e vamos entrar em contato assim que tivermos uma condição que faça sentido para o seu momento.';
-      witems = [
-        {icon:'💛', t:'<strong>Momento financeiro:</strong> O Método Além do Peso é um investimento e queremos que você entre quando puder aproveitar 100%.'},
-        {icon:'📅', t:'<strong>Sem pressa:</strong> Quando sua situação melhorar, estaremos aqui. Seu cadastro já está na nossa lista.'},
-        {icon:'✨', t:'<strong>Enquanto isso:</strong> O conteúdo gratuito do @nutrialemdopeso já vai te preparar para quando chegar a hora certa.'}
-      ];
+    let wdesc,witems;
+    if(q5==='a'){
+      wdesc=first+', entendemos que este não é o melhor momento financeiro para você. Registramos seu interesse e vamos entrar em contato assim que tivermos uma condição que faça sentido para o seu momento.';
+      witems=[{icon:'💛',t:'<strong>Momento financeiro:</strong> O Método Além do Peso é um investimento e queremos que você entre quando puder aproveitar 100%.'},{icon:'📅',t:'<strong>Sem pressa:</strong> Quando sua situação melhorar, estaremos aqui. Seu cadastro já está na nossa lista.'},{icon:'✨',t:'<strong>Enquanto isso:</strong> O conteúdo gratuito do @nutrialemdopeso já vai te preparar para quando chegar a hora certa.'}];
     } else {
-      wdesc  = first+', suas respostas mostram que você ainda está explorando o que quer. Isso é completamente válido, e quando estiver mais clara sobre o que busca, a sessão diagnóstica vai fazer muito mais sentido.';
-      witems = [
-        {icon:'🤔', t:'<strong>Clareza antes de ação:</strong> A sessão diagnóstica funciona melhor quando você já sabe que quer parar de recomeçar, não apenas emagrecer rapidamente.'},
-        {icon:'📱', t:'<strong>Continue acompanhando:</strong> O conteúdo do @nutrialemdopeso vai te ajudar a entender se o MAP é o que você realmente procura.'},
-        {icon:'🔄', t:'<strong>Você pode refazer o quiz:</strong> Quando tiver mais clareza, refaça o quiz. Suas respostas podem ser diferentes.'}
-      ];
+      wdesc=first+', suas respostas mostram que você ainda está explorando o que quer. Isso é completamente válido, e quando estiver mais clara sobre o que busca, a sessão diagnóstica vai fazer muito mais sentido.';
+      witems=[{icon:'🤔',t:'<strong>Clareza antes de ação:</strong> A sessão diagnóstica funciona melhor quando você já sabe que quer parar de recomeçar, não apenas emagrecer rapidamente.'},{icon:'📱',t:'<strong>Continue acompanhando:</strong> O conteúdo do @nutrialemdopeso vai te ajudar a entender se o MAP é o que você realmente procura.'},{icon:'🔄',t:'<strong>Você pode refazer o quiz:</strong> Quando tiver mais clareza, refaça o quiz. Suas respostas podem ser diferentes.'}];
     }
-
-    document.getElementById('w-desc').textContent = wdesc;
-    buildWaitInsights(document.getElementById('w-insights'), witems);
+    document.getElementById('w-desc').textContent=wdesc;
+    buildWaitInsights(document.getElementById('w-insights'),witems);
     goTo('swaitlist');
   }
 }
